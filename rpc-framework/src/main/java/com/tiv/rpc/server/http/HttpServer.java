@@ -1,4 +1,4 @@
-package com.tiv.rpc.server;
+package com.tiv.rpc.server.http;
 
 /**
  * HTTP服务器接口
