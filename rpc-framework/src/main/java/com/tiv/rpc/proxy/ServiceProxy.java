@@ -1,30 +1,37 @@
-package com.tiv.consumer;
+package com.tiv.rpc.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
-import com.tiv.common.model.Order;
-import com.tiv.common.service.OrderService;
 import com.tiv.rpc.model.RpcRequest;
 import com.tiv.rpc.model.RpcResponse;
 import com.tiv.rpc.serializer.Serializer;
 import com.tiv.rpc.serializer.impl.JDKSerializer;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
 /**
- * 订单服务静态代理
+ * 服务代理(基于JDK动态代理)
  */
-public class OrderServiceProxy implements OrderService {
+public class ServiceProxy implements InvocationHandler {
+
+    /**
+     * 调用代理
+     *
+     * @return
+     * @throws Throwable
+     */
     @Override
-    public Order getOrder(Order order) {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 指定序列化器
         Serializer serializer = new JDKSerializer();
-
         // 构造rpc请求
         RpcRequest rpcRequest = RpcRequest
                 .builder()
-                .serviceName(OrderService.class.getName())
-                .methodName("getOrder")
-                .parameterTypes(new Class<?>[]{Order.class})
-                .args(new Object[]{order})
+                .serviceName(method.getDeclaringClass().getName())
+                .methodName(method.getName())
+                .parameterTypes(method.getParameterTypes())
+                .args(args)
                 .build();
         try {
             byte[] bodyBytes = serializer.serialize(rpcRequest);
@@ -35,11 +42,10 @@ public class OrderServiceProxy implements OrderService {
             }
             // 解析rpc响应
             RpcResponse rpcResponse = serializer.deserialize(resultBytes, RpcResponse.class);
-            return (Order) rpcResponse.getData();
+            return rpcResponse.getData();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
