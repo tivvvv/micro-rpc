@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * Rpc响应
+ * rpc响应
  */
 @Data
 @Builder
