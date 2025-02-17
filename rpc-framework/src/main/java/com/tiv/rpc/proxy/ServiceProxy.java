@@ -2,6 +2,7 @@ package com.tiv.rpc.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.model.RpcRequest;
 import com.tiv.rpc.model.RpcResponse;
 import com.tiv.rpc.serializer.Serializer;
@@ -14,6 +15,8 @@ import java.lang.reflect.Method;
  * 服务代理(基于JDK动态代理)
  */
 public class ServiceProxy implements InvocationHandler {
+
+    private final String HTTP_PREFIX = "http://";
 
     /**
      * 调用代理
@@ -36,8 +39,9 @@ public class ServiceProxy implements InvocationHandler {
         try {
             byte[] bodyBytes = serializer.serialize(rpcRequest);
             // 发送请求
+            String url = String.format("%s%s:%s", HTTP_PREFIX, RpcConfigHolder.getRpcConfig().getHost(), RpcConfigHolder.getRpcConfig().getPort());
             byte[] resultBytes;
-            try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8080").body(bodyBytes).execute()) {
+            try (HttpResponse httpResponse = HttpRequest.post(url).body(bodyBytes).execute()) {
                 resultBytes = httpResponse.bodyBytes();
             }
             // 解析rpc响应

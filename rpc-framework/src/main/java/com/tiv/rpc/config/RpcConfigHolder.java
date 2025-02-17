@@ -32,7 +32,7 @@ public class RpcConfigHolder {
      */
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
-        log.info("rpc init, config = {}", newRpcConfig.toString());
+        log.info("micro-rpc init, config = {}", newRpcConfig.toString());
     }
 
     /**

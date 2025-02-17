@@ -16,6 +16,6 @@ public class ProviderApplication {
         // 注册服务
         LocalRegistry.register(OrderService.class.getName(), OrderServiceImpl.class);
         // 启动web服务器
-        new VertxHttpServer().doStart(8080);
+        new VertxHttpServer().doStart(RpcConfigHolder.getRpcConfig().getPort());
     }
 }
