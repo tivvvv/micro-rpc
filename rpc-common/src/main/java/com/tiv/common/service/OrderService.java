@@ -14,4 +14,13 @@ public interface OrderService {
      * @return
      */
     Order getOrder(Order order);
+
+    /**
+     * 获取价格
+     *
+     * @return
+     */
+    default int getPrice() {
+        return 100;
+    }
 }
