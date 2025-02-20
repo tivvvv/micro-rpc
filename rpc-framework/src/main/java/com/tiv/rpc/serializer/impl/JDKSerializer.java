@@ -4,6 +4,9 @@ import com.tiv.rpc.serializer.Serializer;
 
 import java.io.*;
 
+/**
+ * Java原生序列化器
+ */
 public class JDKSerializer implements Serializer {
     @Override
     public <T> byte[] serialize(T obj) throws IOException {
