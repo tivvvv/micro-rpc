@@ -4,10 +4,11 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.tiv.common.model.Order;
 import com.tiv.common.service.OrderService;
+import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.model.RpcRequest;
 import com.tiv.rpc.model.RpcResponse;
 import com.tiv.rpc.serializer.Serializer;
-import com.tiv.rpc.serializer.impl.JDKSerializer;
+import com.tiv.rpc.serializer.SerializerFactory;
 
 /**
  * 订单服务静态代理
@@ -16,7 +17,7 @@ public class OrderServiceProxy implements OrderService {
     @Override
     public Order getOrder(Order order) {
         // 指定序列化器
-        Serializer serializer = new JDKSerializer();
+        Serializer serializer = SerializerFactory.getSerializer(RpcConfigHolder.getRpcConfig().getSerializer());
 
         // 构造rpc请求
         RpcRequest rpcRequest = RpcRequest

@@ -13,7 +13,7 @@ import com.tiv.rpc.utils.ConfigUtils;
 public class ConsumerApplication {
     public static void main(String[] args) {
         RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX);
-        // 创建静态代理对象
+        // 创建动态代理对象
         OrderService orderService = ServiceProxyFactory.getProxy(OrderService.class);
         Order order = new Order();
         order.setName("测试订单");

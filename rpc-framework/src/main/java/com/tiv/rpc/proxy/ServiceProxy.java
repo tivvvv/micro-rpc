@@ -6,7 +6,7 @@ import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.model.RpcRequest;
 import com.tiv.rpc.model.RpcResponse;
 import com.tiv.rpc.serializer.Serializer;
-import com.tiv.rpc.serializer.impl.JDKSerializer;
+import com.tiv.rpc.serializer.SerializerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -27,7 +27,8 @@ public class ServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // 指定序列化器
-        Serializer serializer = new JDKSerializer();
+        Serializer serializer = SerializerFactory.getSerializer(RpcConfigHolder.getRpcConfig().getSerializer());
+
         // 构造rpc请求
         RpcRequest rpcRequest = RpcRequest
                 .builder()

@@ -1,10 +1,11 @@
 package com.tiv.rpc.server.http.handler;
 
+import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.model.RpcRequest;
 import com.tiv.rpc.model.RpcResponse;
 import com.tiv.rpc.registry.LocalRegistry;
 import com.tiv.rpc.serializer.Serializer;
-import com.tiv.rpc.serializer.impl.JDKSerializer;
+import com.tiv.rpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -21,7 +22,7 @@ public class HttpRequestHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest httpServerRequest) {
         // 指定序列化器
-        final Serializer serializer = new JDKSerializer();
+        final Serializer serializer = SerializerFactory.getSerializer(RpcConfigHolder.getRpcConfig().getSerializer());
 
         System.out.println("HTTP请求处理器开始处理请求");
         // 异步处理请求

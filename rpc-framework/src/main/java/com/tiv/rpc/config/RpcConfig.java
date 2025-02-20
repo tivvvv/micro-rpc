@@ -1,5 +1,6 @@
 package com.tiv.rpc.config;
 
+import com.tiv.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**
@@ -32,4 +33,9 @@ public class RpcConfig {
      * 是否开启mock调用
      */
     private boolean mock = false;
+
+    /**
+     * 序列化器
+     */
+    private String serializer = SerializerKeys.JSON;
 }
