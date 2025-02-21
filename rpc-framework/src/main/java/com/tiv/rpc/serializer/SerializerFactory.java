@@ -1,5 +1,6 @@
 package com.tiv.rpc.serializer;
 
+import com.tiv.rpc.serializer.impl.HessianSerializer;
 import com.tiv.rpc.serializer.impl.JDKSerializer;
 import com.tiv.rpc.serializer.impl.JsonSerializer;
 import com.tiv.rpc.serializer.impl.KryoSerializer;
@@ -20,6 +21,7 @@ public class SerializerFactory {
             put(SerializerKeys.JDK, new JDKSerializer());
             put(SerializerKeys.JSON, new JsonSerializer());
             put(SerializerKeys.KRYO, new KryoSerializer());
+            put(SerializerKeys.HESSIAN, new HessianSerializer());
         }
     };
 
