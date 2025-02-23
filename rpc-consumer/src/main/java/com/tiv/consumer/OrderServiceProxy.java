@@ -17,7 +17,7 @@ public class OrderServiceProxy implements OrderService {
     @Override
     public Order getOrder(Order order) {
         // 指定序列化器
-        Serializer serializer = SerializerFactory.getSerializer(RpcConfigHolder.getRpcConfig().getSerializer());
+        final Serializer serializer = SerializerFactory.getSerializer(RpcConfigHolder.getRpcConfig().getSerializer());
 
         // 构造rpc请求
         RpcRequest rpcRequest = RpcRequest

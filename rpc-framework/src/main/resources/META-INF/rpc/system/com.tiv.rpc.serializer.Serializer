@@ -1,0 +1,4 @@
+jdk=com.tiv.rpc.serializer.impl.JDKSerializer
+hessian=com.tiv.rpc.serializer.impl.HessianSerializer
+json=com.tiv.rpc.serializer.impl.JsonSerializer
+kryo=com.tiv.rpc.serializer.impl.KryoSerializer
