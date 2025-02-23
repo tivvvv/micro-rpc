@@ -23,12 +23,12 @@ public class SpiLoader {
     /**
      * 系统spi目录
      */
-    private static final String RPC_SYSTEM_SPI_DIR = "META-INF/rpc/system";
+    private static final String RPC_SYSTEM_SPI_DIR = "META-INF/rpc/system/";
 
     /**
      * 自定义spi目录
      */
-    private static final String RPC_CUSTOM_SPI_DIR = "META-INF/rpc/custom";
+    private static final String RPC_CUSTOM_SPI_DIR = "META-INF/rpc/custom/";
 
     /**
      * spi扫描路径
