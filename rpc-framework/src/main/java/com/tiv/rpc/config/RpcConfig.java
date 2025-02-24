@@ -4,7 +4,7 @@ import com.tiv.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
 /**
- * rpc框架配置
+ * rpc框架配置类
  */
 @Data
 public class RpcConfig {
@@ -38,4 +38,9 @@ public class RpcConfig {
      * 序列化器
      */
     private String serializer = SerializerKeys.JSON;
+
+    /**
+     * 注册中心配置
+     */
+    private RegistryConfig registryConfig = new RegistryConfig();
 }

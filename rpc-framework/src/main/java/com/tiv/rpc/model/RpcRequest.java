@@ -35,4 +35,9 @@ public class RpcRequest implements Serializable {
      * 参数列表
      */
     private Object[] args;
+
+    /**
+     * 服务版本号
+     */
+    private String serviceVersion;
 }
