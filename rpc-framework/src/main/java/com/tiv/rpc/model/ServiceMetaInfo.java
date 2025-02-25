@@ -1,7 +1,6 @@
 package com.tiv.rpc.model;
 
 import cn.hutool.core.util.StrUtil;
-import com.tiv.rpc.constant.RpcConstant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServiceMetaInfo {
-
-    private final static String HTTP_PREFIX = "http";
 
     /**
      * 服务名
@@ -37,6 +34,11 @@ public class ServiceMetaInfo {
      * 服务端口号
      */
     private Integer servicePort;
+
+    /**
+     * HTTP前缀常量
+     */
+    private final static String HTTP_PREFIX = "http";
 
     /**
      * 获取服务注册key

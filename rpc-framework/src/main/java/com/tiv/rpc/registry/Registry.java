@@ -44,4 +44,9 @@ public interface Registry {
      * 节点下线
      */
     void destroy();
+
+    /**
+     * 心跳检测
+     */
+    void heartBeat();
 }
