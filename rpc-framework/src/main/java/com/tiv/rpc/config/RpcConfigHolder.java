@@ -1,6 +1,8 @@
 package com.tiv.rpc.config;
 
 import com.tiv.rpc.constant.RpcConstant;
+import com.tiv.rpc.registry.Registry;
+import com.tiv.rpc.registry.RegistryFactory;
 import com.tiv.rpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +33,14 @@ public class RpcConfigHolder {
      * @param newRpcConfig
      */
     public static void init(RpcConfig newRpcConfig) {
+        // 初始化rpc配置
         rpcConfig = newRpcConfig;
         log.info("micro-rpc init, config = {}", newRpcConfig.toString());
+        // 初始化注册中心
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getRegistry(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     /**

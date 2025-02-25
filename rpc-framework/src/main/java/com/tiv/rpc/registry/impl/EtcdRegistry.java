@@ -7,6 +7,7 @@ import com.tiv.rpc.registry.Registry;
 import io.etcd.jetcd.*;
 import io.etcd.jetcd.options.GetOption;
 import io.etcd.jetcd.options.PutOption;
+import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Etcd注册中心
  */
+@Slf4j
 public class EtcdRegistry implements Registry {
 
     /**
@@ -68,6 +70,7 @@ public class EtcdRegistry implements Registry {
         PutOption putOption = PutOption.builder().withLeaseId(leaseId).build();
         // 存储键值对
         kvClient.put(key, value, putOption).get();
+        log.info("服务注册成功: {},key: {},value: {}", serviceMetaInfo, key, value);
     }
 
     @Override

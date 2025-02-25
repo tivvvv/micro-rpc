@@ -1,12 +1,22 @@
 package com.tiv.rpc.model;
 
+import cn.hutool.core.util.StrUtil;
+import com.tiv.rpc.constant.RpcConstant;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 服务元信息
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceMetaInfo {
+
+    private final static String HTTP_PREFIX = "http";
 
     /**
      * 服务名
@@ -44,5 +54,17 @@ public class ServiceMetaInfo {
      */
     public String getServiceNodeKey() {
         return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePort);
+    }
+
+    /**
+     * 获取完整的服务地址
+     *
+     * @return
+     */
+    public String getServiceAddress() {
+        if (!StrUtil.contains(serviceHost, HTTP_PREFIX)) {
+            return String.format("%s://%s:%s", HTTP_PREFIX, serviceHost, servicePort);
+        }
+        return String.format("%s:%s", serviceHost, servicePort);
     }
 }
