@@ -129,7 +129,7 @@ public class EtcdRegistry implements Registry {
 
     @Override
     public void heartBeat() {
-        CronUtil.schedule("0/30 * * * * ?", new Task() {
+        CronUtil.schedule("0/15 * * * * ? *", new Task() {
             @Override
             public void execute() {
                 for (String key : localRegisterNodeKeySet) {
