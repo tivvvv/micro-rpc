@@ -41,6 +41,8 @@ public class RpcConfigHolder {
         Registry registry = RegistryFactory.getRegistry(registryConfig.getRegistry());
         registry.init(registryConfig);
         log.info("registry init, config = {}", registryConfig);
+        // JVM退出时,服务从注册中心下线
+        Runtime.getRuntime().addShutdownHook(new Thread(registry::destroy));
     }
 
     /**
