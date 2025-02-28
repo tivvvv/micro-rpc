@@ -13,6 +13,7 @@ import com.tiv.rpc.serializer.SerializerFactory;
 /**
  * 订单服务静态代理
  */
+@Deprecated
 public class OrderServiceProxy implements OrderService {
     @Override
     public Order getOrder(Order order) {
