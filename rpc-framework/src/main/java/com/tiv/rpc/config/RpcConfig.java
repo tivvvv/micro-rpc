@@ -32,7 +32,7 @@ public class RpcConfig {
     /**
      * 是否开启mock调用
      */
-    private boolean mock = false;
+    private boolean mockActive = false;
 
     /**
      * 序列化器

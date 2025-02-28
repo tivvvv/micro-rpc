@@ -190,8 +190,8 @@ public class EtcdRegistry implements Registry {
     @Override
     public void watch(String serviceNodeKey) {
         Watch watchClient = client.getWatchClient();
-        boolean add = watchingKeySet.add(serviceNodeKey);
-        if (add) {
+        boolean added = watchingKeySet.add(serviceNodeKey);
+        if (added) {
             watchClient.watch(ByteSequence.from(serviceNodeKey, StandardCharsets.UTF_8), response -> {
                 for (WatchEvent event : response.getEvents()) {
                     switch (event.getEventType()) {
