@@ -10,7 +10,7 @@ import com.tiv.rpc.model.ServiceMetaInfo;
 import com.tiv.rpc.registry.LocalRegistry;
 import com.tiv.rpc.registry.Registry;
 import com.tiv.rpc.registry.RegistryFactory;
-import com.tiv.rpc.server.http.impl.VertxHttpServer;
+import com.tiv.rpc.server.tcp.VertxTcpServer;
 
 /**
  * 服务提供者启动类
@@ -42,6 +42,6 @@ public class ProviderApplication {
         }
 
         // 启动web服务器
-        new VertxHttpServer().doStart(RpcConfigHolder.getRpcConfig().getPort());
+        new VertxTcpServer().doStart(RpcConfigHolder.getRpcConfig().getPort());
     }
 }

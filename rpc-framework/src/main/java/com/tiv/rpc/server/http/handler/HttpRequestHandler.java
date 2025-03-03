@@ -52,7 +52,7 @@ public class HttpRequestHandler implements Handler<HttpServerRequest> {
                 // 封装rpcResponse
                 rpcResponse.setData(result);
                 rpcResponse.setDataType(method.getReturnType());
-                rpcResponse.setMessage("success");
+                rpcResponse.setMessage("http success");
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException |
                      InstantiationException e) {
                 throw new RuntimeException(e);
