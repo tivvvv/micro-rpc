@@ -28,19 +28,19 @@ public class ProtocolMessageDecoder {
     public static ProtocolMessage<?> decode(Buffer buffer) throws IOException {
         Header header = new Header();
         // 读取消息头结构
-        byte magic = buffer.getByte(0);
+        byte magic = buffer.getByte(ProtocolConstant.MAGIC_INDEX);
         if (ProtocolConstant.PROTOCOL_MAGIC != magic) {
             throw new RuntimeException("非法消息");
         }
         header.setMagic(magic);
-        header.setVersion(buffer.getByte(1));
-        header.setSerializer(buffer.getByte(2));
-        header.setType(buffer.getByte(3));
-        header.setStatus(buffer.getByte(4));
-        header.setRequestId(buffer.getLong(5));
-        header.setBodyLength(buffer.getInt(13));
+        header.setVersion(buffer.getByte(ProtocolConstant.VERSION_INDEX));
+        header.setSerializer(buffer.getByte(ProtocolConstant.SERIALIZER_INDEX));
+        header.setType(buffer.getByte(ProtocolConstant.TYPE_INDEX));
+        header.setStatus(buffer.getByte(ProtocolConstant.STATUS_INDEX));
+        header.setRequestId(buffer.getLong(ProtocolConstant.REQUEST_ID_INDEX));
+        header.setBodyLength(buffer.getInt(ProtocolConstant.BODY_LENGTH_INDEX));
         // 读取消息体
-        byte[] bodyBytes = buffer.getBytes(17, 17 + header.getBodyLength());
+        byte[] bodyBytes = buffer.getBytes(ProtocolConstant.MESSAGE_HEADER_LENGTH, ProtocolConstant.MESSAGE_HEADER_LENGTH + header.getBodyLength());
         ProtocolMessageSerializerEnum serializerEnum = ProtocolMessageSerializerEnum.getEnumByCode(header.getSerializer());
         if (serializerEnum == null) {
             throw new RuntimeException("序列化器不存在");
