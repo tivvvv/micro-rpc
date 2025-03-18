@@ -6,7 +6,7 @@ import io.vertx.core.net.NetServer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Vert.x实现TCP服务器
+ * 基于Vert.x实现TCP服务器
  */
 @Slf4j
 public class VertxTcpServer {

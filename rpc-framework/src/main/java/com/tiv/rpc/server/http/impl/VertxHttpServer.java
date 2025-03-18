@@ -5,7 +5,7 @@ import com.tiv.rpc.server.http.handler.HttpRequestHandler;
 import io.vertx.core.Vertx;
 
 /**
- * Vert.x实现HTTP服务器
+ * 基于Vert.x实现HTTP服务器
  */
 public class VertxHttpServer implements HttpServer {
     @Override
