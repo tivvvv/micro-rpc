@@ -1,7 +1,7 @@
-package com.tiv.rpc.loadbalance.impl;
+package com.tiv.rpc.loadbalancer.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.tiv.rpc.loadbalance.LoadBalancer;
+import com.tiv.rpc.loadbalancer.LoadBalancer;
 import com.tiv.rpc.model.ServiceMetaInfo;
 
 import java.util.List;

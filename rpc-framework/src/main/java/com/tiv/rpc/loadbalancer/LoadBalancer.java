@@ -1,4 +1,4 @@
-package com.tiv.rpc.loadbalance;
+package com.tiv.rpc.loadbalancer;
 
 import com.tiv.rpc.model.ServiceMetaInfo;
 

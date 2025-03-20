@@ -1,29 +1,36 @@
-package com.tiv.rpc.loadbalance.impl;
+package com.tiv.rpc.loadbalancer.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.tiv.rpc.loadbalance.LoadBalancer;
+import com.tiv.rpc.loadbalancer.LoadBalancer;
 import com.tiv.rpc.model.ServiceMetaInfo;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 随机负载均衡器
+ * 轮询负载均衡器
  */
-public class RandomLoadBalancer implements LoadBalancer {
+public class RoundRobinLoadBalancer implements LoadBalancer {
 
-    private final Random random = new Random();
+    /**
+     * 当前轮询的下标
+     */
+    private final AtomicInteger currentIndex = new AtomicInteger(0);
 
     @Override
     public ServiceMetaInfo select(Map<String, Object> requestParams, List<ServiceMetaInfo> serviceMetaInfoList) {
+        // 没有可用的服务
         if (CollUtil.isEmpty(serviceMetaInfoList)) {
             return null;
         }
+
         int size = serviceMetaInfoList.size();
         if (size == 1) {
             return serviceMetaInfoList.get(0);
         }
-        return serviceMetaInfoList.get(random.nextInt(size));
+
+        int index = currentIndex.getAndIncrement() % size;
+        return serviceMetaInfoList.get(index);
     }
 }

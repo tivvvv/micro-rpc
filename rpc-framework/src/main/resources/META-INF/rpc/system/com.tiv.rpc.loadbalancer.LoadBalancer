@@ -1,0 +1,3 @@
+roundRobin=com.tiv.rpc.loadbalancer.impl.RoundRobinLoadBalancer
+random=com.tiv.rpc.loadbalancer.impl.RandomLoadBalancer
+consistentHash=com.tiv.rpc.loadbalancer.impl.ConsistentHashLoadBalancer

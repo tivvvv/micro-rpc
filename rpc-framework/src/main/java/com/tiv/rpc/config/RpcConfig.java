@@ -1,5 +1,6 @@
 package com.tiv.rpc.config;
 
+import com.tiv.rpc.loadbalancer.LoadBalancerKeys;
 import com.tiv.rpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -38,6 +39,11 @@ public class RpcConfig {
      * 序列化器
      */
     private String serializer = SerializerKeys.JSON;
+
+    /**
+     * 负载均衡器
+     */
+    private String LoadBalancer = LoadBalancerKeys.ROUND_ROBIN;
 
     /**
      * 注册中心配置
