@@ -1,5 +1,6 @@
 package com.tiv.rpc.config;
 
+import com.tiv.rpc.fault.retry.RetryStrategyKeys;
 import com.tiv.rpc.loadbalancer.LoadBalancerKeys;
 import com.tiv.rpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -49,4 +50,9 @@ public class RpcConfig {
      * 注册中心配置
      */
     private RegistryConfig registryConfig = new RegistryConfig();
+
+    /**
+     * 重试策略
+     */
+    private String retryStrategy = RetryStrategyKeys.NO_RETRY;
 }
