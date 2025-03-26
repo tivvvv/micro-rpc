@@ -1,0 +1,2 @@
+failFast=com.tiv.rpc.fault.tolerant.impl.FailFastTolerantStrategy
+failSafe=com.tiv.rpc.fault.tolerant.impl.FailSafeTolerantStrategy

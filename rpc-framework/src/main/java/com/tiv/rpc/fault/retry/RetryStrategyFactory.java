@@ -15,7 +15,7 @@ public class RetryStrategyFactory {
     /**
      * 默认重试策略
      */
-    public static final RetryStrategy DEFAULT_RETRY_STRATEGY = new NoRetryStrategy();
+    private static final RetryStrategy DEFAULT_RETRY_STRATEGY = new NoRetryStrategy();
 
     /**
      * 获取重试策略
