@@ -6,6 +6,8 @@ import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.constant.RpcConstant;
 import com.tiv.rpc.fault.retry.RetryStrategy;
 import com.tiv.rpc.fault.retry.RetryStrategyFactory;
+import com.tiv.rpc.fault.tolerant.TolerantStrategy;
+import com.tiv.rpc.fault.tolerant.TolerantStrategyFactory;
 import com.tiv.rpc.loadbalancer.LoadBalancer;
 import com.tiv.rpc.loadbalancer.LoadBalancerFactory;
 import com.tiv.rpc.model.RpcRequest;
@@ -72,8 +74,14 @@ public class ServiceProxy implements InvocationHandler {
 
             // 发送请求
             RetryStrategy retryStrategy = RetryStrategyFactory.getRetryStrategy(rpcConfig.getRetryStrategy());
-            RpcResponse rpcResponse = retryStrategy.doRetry(() ->
-                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo), rpcRequest.getMethodName());
+            RpcResponse rpcResponse;
+            try {
+                rpcResponse = retryStrategy.doRetry(() ->
+                        VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo), rpcRequest.getMethodName());
+            } catch (Exception e) {
+                TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getTolerantStrategy(rpcConfig.getTolerantStrategy());
+                rpcResponse = tolerantStrategy.doTolerant(null, e);
+            }
             return rpcResponse.getData();
         } catch (Exception e) {
             throw new RuntimeException("客户端调用服务器失败");
