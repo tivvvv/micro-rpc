@@ -2,17 +2,16 @@ package com.tiv.consumer;
 
 import com.tiv.common.model.Order;
 import com.tiv.common.service.OrderService;
-import com.tiv.rpc.config.RpcConfig;
-import com.tiv.rpc.constant.RpcConstant;
+import com.tiv.rpc.config.RpcConfigHolder;
 import com.tiv.rpc.proxy.ServiceProxyFactory;
-import com.tiv.rpc.utils.ConfigUtils;
 
 /**
  * 消费者示例
  */
 public class ConsumerApplication {
     public static void main(String[] args) {
-        RpcConfig rpcConfig = ConfigUtils.loadConfig(RpcConfig.class, RpcConstant.DEFAULT_CONFIG_PREFIX);
+        RpcConfigHolder.init();
+
         // 创建动态代理对象
         OrderService orderService = ServiceProxyFactory.getProxy(OrderService.class);
         Order order = new Order();
