@@ -8,7 +8,7 @@ import com.tiv.rpc.proxy.ServiceProxyFactory;
 import com.tiv.rpc.utils.ConfigUtils;
 
 /**
- * 消费者启动类
+ * 消费者示例
  */
 public class ConsumerApplication {
     public static void main(String[] args) {
