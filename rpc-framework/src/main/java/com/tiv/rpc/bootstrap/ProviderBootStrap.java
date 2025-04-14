@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 服务提供者启动类
  */
-public class ProviderBootStrap {
+public class ProviderBootstrap {
 
     /**
      * 初始化

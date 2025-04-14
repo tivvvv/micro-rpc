@@ -2,7 +2,7 @@ package com.tiv.provider;
 
 import com.tiv.common.service.OrderService;
 import com.tiv.provider.impl.OrderServiceImpl;
-import com.tiv.rpc.bootstrap.ProviderBootStrap;
+import com.tiv.rpc.bootstrap.ProviderBootstrap;
 import com.tiv.rpc.model.ServiceRegisterInfo;
 
 import java.util.ArrayList;
@@ -19,6 +19,6 @@ public class ProviderApplication {
         serviceRegisterInfoList.add(serviceRegisterInfo);
 
         // 启动服务
-        ProviderBootStrap.init(serviceRegisterInfoList);
+        ProviderBootstrap.init(serviceRegisterInfoList);
     }
 }

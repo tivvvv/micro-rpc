@@ -5,7 +5,7 @@ import com.tiv.rpc.config.RpcConfigHolder;
 /**
  * 消费者启动类
  */
-public class ConsumerBootStrap {
+public class ConsumerBootstrap {
 
     /**
      * 初始化
