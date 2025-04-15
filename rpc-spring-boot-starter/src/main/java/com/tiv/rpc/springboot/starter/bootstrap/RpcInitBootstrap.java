@@ -10,10 +10,17 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
- * rpc框架自启动器
+ * 注解驱动rpc框架自启动器
  */
 @Slf4j
 public class RpcInitBootstrap implements ImportBeanDefinitionRegistrar {
+
+    /**
+     * Spring初始化时自动执行,初始化rpc框架
+     *
+     * @param importingClassMetadata
+     * @param registry
+     */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 
