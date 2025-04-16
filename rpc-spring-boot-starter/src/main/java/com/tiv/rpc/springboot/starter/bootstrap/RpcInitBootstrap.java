@@ -33,6 +33,8 @@ public class RpcInitBootstrap implements ImportBeanDefinitionRegistrar {
         if (needServer) {
             log.info("micro-rpc server启动.");
             new VertxTcpServer().doStart(rpcConfig.getPort());
+        } else {
+            log.info("不启动server");
         }
     }
 }

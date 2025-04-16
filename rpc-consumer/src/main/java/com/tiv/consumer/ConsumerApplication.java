@@ -8,6 +8,7 @@ import com.tiv.rpc.proxy.ServiceProxyFactory;
 /**
  * 消费者示例
  */
+@Deprecated
 public class ConsumerApplication {
     public static void main(String[] args) {
         RpcConfigHolder.init();

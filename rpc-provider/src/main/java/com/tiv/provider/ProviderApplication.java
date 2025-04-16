@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * 服务提供者示例
  */
+@Deprecated
 public class ProviderApplication {
     public static void main(String[] args) {
         // 提供的服务
